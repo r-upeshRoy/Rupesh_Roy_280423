@@ -22,22 +22,25 @@ public class CustomerService {
 		return customerDao.findAll();
 	}
 	
-	public List<Customer> findByFirstNameIgnoreCase(String firstName){
+	public List<Customer> findByFirstName(String firstName){
 		
-		return customerDao.findByFirstNameIgnoreCase(firstName);
+		return customerDao.findByFirstNameContainingIgnoreCase(firstName);
 	}
 	
 
-	public List<Customer> findByLastNameIgnoreCase(String lastName){
-		return customerDao.findByLastNameIgnoreCase(lastName);	
+	public List<Customer> findByLastName(String lastName){
+		return customerDao.findByLastNameContainingIgnoreCase(lastName);	
 	}
 
 	public List<Customer> findByMobileNumber(String mobileNumber) {
 				return customerDao.findByMobileNumber(mobileNumber);
 	}
-	
-	
-	
+
+	public boolean existsByMobileNumber(String mobileNumber) {
+		
+		return customerDao.existsByMobileNumber(mobileNumber);
+	}
+
 	
 
 }
