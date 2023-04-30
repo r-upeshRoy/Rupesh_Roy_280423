@@ -211,7 +211,15 @@
     Custmer addded Successfully
     
     
-    
+   8. Delete Customer Account
+     
+     DELETE URL: http://localhost:8080/customer/deleteCustomer/9111111114
+     
+     ResponseBody:
+     
+     Customer Details deleted Successfully
+   
+     
     
     
 

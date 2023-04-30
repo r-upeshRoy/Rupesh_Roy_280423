@@ -71,8 +71,8 @@ public class CustomerService {
 		return null;
 	}
 	
-	public ResponseEntity<String> createCustomer(Customer customer,String mobNo) {
-		
+	//Method for creating Customer Account
+	public ResponseEntity<String> createCustomer(Customer customer,String mobNo) {	
 		List<MobileNumber> mobi=mobileDao.findAll();
 		for(MobileNumber mob:mobi) {
 			if(mob.getMobileNumber().equals(mobNo)) {
@@ -82,6 +82,18 @@ public class CustomerService {
 		customerDao.save(customer);
 		return ResponseEntity.ok("Custmer addded Successfully");	
 		
+	}
+	
+	//Method for deleting Customer Details
+	public ResponseEntity<String> deleteCustomer(String mobileNo) {
+		List<MobileNumber> mobile = mobileDao.findAll();// getting all Mobile NUmbers.
+		for (MobileNumber m : mobile) {
+			if (m.getMobileNumber().equals(mobileNo)) {
+				customerDao.delete(m.getMobileCustomer());//checking Mobile Number exists in database or not.
+				return ResponseEntity.ok("Customer Details deleted Successfully");
+			}
+		}
+	 return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("mobile number is not exists");
 	}
     
     
