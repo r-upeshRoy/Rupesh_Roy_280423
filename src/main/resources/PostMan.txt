@@ -1,0 +1,207 @@
+1. get All Customer Details
+   
+   GET URL: http://localhost:8080/customer/allCustomer
+ 
+  Response:
+
+   [
+    {
+        "id": 1,
+        "firstName": "Alan",
+        "lastName": "Smith",
+        "mobNumbers": [
+            {
+                "id": 1,
+                "mobileNumber": "9111111111"
+            },
+            {
+                "id": 2,
+                "mobileNumber": "9111111100"
+            },
+            {
+                "id": 3,
+                "mobileNumber": "9111155100"
+            }
+        ]
+    },
+    {
+        "id": 2,
+        "firstName": "Joe",
+        "lastName": "Turing",
+        "mobNumbers": [
+            {
+                "id": 4,
+                "mobileNumber": "9111111112"
+            },
+            {
+                "id": 5,
+                "mobileNumber": "9111111122"
+            }
+        ]
+    },
+    {
+        "id": 3,
+        "firstName": "John",
+        "lastName": "Smith",
+        "mobNumbers": [
+            {
+                "id": 6,
+                "mobileNumber": "9111111113"
+            },
+            {
+                "id": 7,
+                "mobileNumber": "9116611100"
+            },
+            {
+                "id": 8,
+                "mobileNumber": "9111551100"
+            }
+        ]
+    },
+    {
+        "id": 4,
+        "firstName": "Kathy",
+        "lastName": "Sierra",
+        "mobNumbers": [
+            {
+                "id": 9,
+                "mobileNumber": "9111111114"
+            }
+        ]
+    }
+]
+
+
+2. get customer details by first Name
+
+  GET URL: http://localhost:8080/customer/byFirstName/KaT
+  Response: 
+   [
+    {
+        "id": 4,
+        "firstName": "Kathy",
+        "lastName": "Sierra",
+        "mobNumbers": [
+            {
+                "id": 9,
+                "mobileNumber": "9111111114"
+            }
+        ]
+    }
+]
+
+
+3. get customer details by last Name
+
+  GET URL: http://localhost:8080/customer/byLastName/sMi
+
+  Response:
+   [
+    {
+        "id": 1,
+        "firstName": "Alan",
+        "lastName": "Smith",
+        "mobNumbers": [
+            {
+                "id": 1,
+                "mobileNumber": "9111111111"
+            },
+            {
+                "id": 2,
+                "mobileNumber": "9111111100"
+            },
+            {
+                "id": 3,
+                "mobileNumber": "9111155100"
+            }
+        ]
+    },
+    {
+        "id": 3,
+        "firstName": "John",
+        "lastName": "Smith",
+        "mobNumbers": [
+            {
+                "id": 6,
+                "mobileNumber": "9111111113"
+            },
+            {
+                "id": 7,
+                "mobileNumber": "9116611100"
+            },
+            {
+                "id": 8,
+                "mobileNumber": "9111551100"
+            }
+        ]
+    }
+]
+
+4. get customer details by mobile number
+
+   GET URL: http://localhost:8080/customer/getCustomerByMobNo/9116611100
+
+   Response:
+   
+{
+    "id": 3,
+    "firstName": "John",
+    "lastName": "Smith",
+    "mobNumbers": [
+        {
+            "id": 6,
+            "mobileNumber": "9111111113"
+        },
+        {
+            "id": 7,
+            "mobileNumber": "9116611100"
+        },
+        {
+            "id": 8,
+            "mobileNumber": "9111551100"
+        }
+    ]
+}
+
+
+5. get Mobile number by customer Id
+   
+  GET URL: http://localhost:8080/customer/getCustomerByMobNo/9116611100
+
+  Response:
+
+  [
+    {
+        "id": 1,
+        "mobileNumber": "9111111111"
+    },
+    {
+        "id": 2,
+        "mobileNumber": "9111111100"
+    },
+    {
+        "id": 3,
+        "mobileNumber": "9111155100"
+    }
+]
+
+
+6. Add Mobile Number by customer id
+
+  POST URL: http://localhost:8080/customer/addMobile/4
+
+  Response Body:
+  {
+        "mobileNumber": "911151111"
+  }
+
+ 
+
+
+ 
+
+
+
+
+
+   

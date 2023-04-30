@@ -11,8 +11,9 @@ public interface CustomerDao extends JpaRepository<Customer, Long>{
 	List<Customer> findByFirstNameContainingIgnoreCase(String firstName);
 	
 	List<Customer> findByLastNameContainingIgnoreCase(String lastName);
+	
 
-	List<Customer> findByMobileNumber(String mobileNumber);
-
-	boolean existsByMobileNumber(String mobileNumber);
+//	List<Customer> findByMobileNumber(String mobileNumber);
+//
+//	boolean existsByMobileNumber(String mobileNumber);
 }

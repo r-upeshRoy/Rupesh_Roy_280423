@@ -1,10 +1,18 @@
 package com.avisys.cim;
 
+import java.util.ArrayList;
+import java.util.List;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
+import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.OneToMany;
 import jakarta.persistence.SequenceGenerator;
 import jakarta.persistence.Table;
 
@@ -24,9 +32,16 @@ public class Customer {
 	@Column(name = "LAST_NAME", nullable = false)
 	private String lastName;
 
-	@Column(name = "MOBILE_NUMBER", unique = true, nullable = false)
-	private String mobileNumber;
-
+	@OneToMany(mappedBy = "mobileCustomer", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+	@JsonIgnore
+	private List<MobileNumber> MobNumbers = new ArrayList<MobileNumber>(); //init empty list
+	
+	public void addNo(MobileNumber mobNo) {
+		MobNumbers.add(mobNo);
+		mobNo.setMobileCustomer(this);
+	}
+	
+	
 	public Long getId() {
 		return id;
 	}
@@ -51,12 +66,11 @@ public class Customer {
 		this.lastName = lastName;
 	}
 
-	public String getMobileNumber() {
-		return mobileNumber;
+
+	public List<MobileNumber> getMobNumbers() {
+		return MobNumbers;
 	}
 
-	public void setMobileNumber(String mobileNumber) {
-		this.mobileNumber = mobileNumber;
-	}
+
 
 }

@@ -1,13 +1,17 @@
 package com.avisys.cim.service;
 
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.avisys.cim.Customer;
+import com.avisys.cim.MobileNumber;
 import com.avisys.cim.dao.CustomerDao;
+import com.avisys.cim.dao.MobileDao;
 
+import jakarta.persistence.EntityNotFoundException;
 import jakarta.transaction.Transactional;
 
 @Service
@@ -17,6 +21,8 @@ public class CustomerService {
 	@Autowired
     CustomerDao customerDao;
 	
+	@Autowired
+    MobileDao mobileDao;
 	
 	public List<Customer> findAllCustomer(){
 		return customerDao.findAll();
@@ -26,21 +32,44 @@ public class CustomerService {
 		
 		return customerDao.findByFirstNameContainingIgnoreCase(firstName);
 	}
-	
 
 	public List<Customer> findByLastName(String lastName){
 		return customerDao.findByLastNameContainingIgnoreCase(lastName);	
 	}
-
-	public List<Customer> findByMobileNumber(String mobileNumber) {
-				return customerDao.findByMobileNumber(mobileNumber);
-	}
-
-	public boolean existsByMobileNumber(String mobileNumber) {
-		
-		return customerDao.existsByMobileNumber(mobileNumber);
-	}
-
 	
+
+	//Method for adding multiple mobile Number for customer
+    public String addNo(Long id, MobileNumber mob) {
+		Customer customer=customerDao.findById(id).get();
+		customer.addNo(mob);
+		mobileDao.save(mob);		
+		return "successfully Added Number";
+	}
+	
+
+    //Method for get  Multiple Mobile Number for single Customer
+    public List<MobileNumber> getAll(Long customerId) {
+        Optional<Customer> customer = customerDao.findById(customerId);
+        if (customer.isPresent()) {
+          return customer.get().getMobNumbers();
+        } else {
+          throw new EntityNotFoundException("Customer with id " + customerId + " not found.");
+        }
+      }
+
+
+    //Method for getting All Customer Details by Mobile Number 
+	public Customer getCustomerByMobNo(String mobileNumber) {
+		List<MobileNumber> mobNo = mobileDao.findAll();
+		
+		for (MobileNumber mobileNum : mobNo) {
+			if(mobileNum.getMobileNumber().equals(mobileNumber))
+			   return mobileNum.getMobileCustomer();
+		}
+		return null;
+	}
+    
+    
+   
 
 }
