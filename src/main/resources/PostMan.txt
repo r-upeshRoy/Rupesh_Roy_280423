@@ -190,10 +190,30 @@
 
   POST URL: http://localhost:8080/customer/addMobile/4
 
-  Response Body:
+  Request Body:
   {
         "mobileNumber": "911151111"
   }
+  
+  
+  7. Create Customer Account
+  
+    POST URL: http://localhost:8080/customer/addCustomer/9111122345
+    
+    RequestBody:
+    {
+        
+        "firstName": "Rupesh",
+        "lastName": "Roy"
+    }
+    
+    ResponseBody: 
+    Custmer addded Successfully
+    
+    
+    
+    
+    
 
  
 

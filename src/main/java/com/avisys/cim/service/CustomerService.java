@@ -4,6 +4,8 @@ import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
 import com.avisys.cim.Customer;
@@ -38,7 +40,7 @@ public class CustomerService {
 	}
 	
 
-	//Method for adding multiple mobile Number for customer
+	// adding multiple mobile Number for customer
     public String addNo(Long id, MobileNumber mob) {
 		Customer customer=customerDao.findById(id).get();
 		customer.addNo(mob);
@@ -67,6 +69,19 @@ public class CustomerService {
 			   return mobileNum.getMobileCustomer();
 		}
 		return null;
+	}
+	
+	public ResponseEntity<String> createCustomer(Customer customer,String mobNo) {
+		
+		List<MobileNumber> mobi=mobileDao.findAll();
+		for(MobileNumber mob:mobi) {
+			if(mob.getMobileNumber().equals(mobNo)) {
+				return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("already exists");
+			}
+		}
+		customerDao.save(customer);
+		return ResponseEntity.ok("Custmer addded Successfully");	
+		
 	}
     
     
