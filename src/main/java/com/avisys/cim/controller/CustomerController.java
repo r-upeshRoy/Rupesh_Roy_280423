@@ -3,6 +3,7 @@ package com.avisys.cim.controller;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -71,6 +72,22 @@ public class CustomerController {
 		return customerService.deleteCustomer(mobileNo);
 	}
 	
+	
+	// Method for Adding multiple Customer Mobile number to existing customer
+	@PostMapping("/addCustomerNumber/{id}")
+	public String addCustomerNumber(@PathVariable Long id, @RequestBody MobileNumber mob) {
+		return customerService.addCustomerNumber(id, mob);
+	}
+
+	// Method for deleting multiple Customer Mobile number to existing customer
+	@PostMapping("/deleteMobileNo/{id}")
+	public String deleteMobileNo(@PathVariable Long id, @RequestBody MobileNumber mob) {
+		return customerService.deleteCustomerNumber(id, mob);
+	}
+	
+	
+
+
 	
 	
 	

@@ -218,6 +218,33 @@
      ResponseBody:
      
      Customer Details deleted Successfully
+     
+     
+   9. Add Customer Mobile Number
+    
+      POST URL: http://localhost:8080/customer/addCustomerNumber/3
+      
+      RequestBody:
+      {
+        "mobileNumber": "91111111500"
+      }
+      
+      ResponseBody:
+      
+      Customer mobile number added successful
+      
+   10. Delete Customer Mobile Number
+   
+     POST URL : http://localhost:8080/customer/deleteMobileNo/2
+     
+       RequestBody:
+      {
+        "mobileNumber": "9111111112"
+      }
+      
+      ResponseBody:
+      
+      Customer Mobile number deleted successful
    
      
     

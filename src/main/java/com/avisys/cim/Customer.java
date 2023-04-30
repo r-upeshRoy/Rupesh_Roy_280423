@@ -41,7 +41,10 @@ public class Customer {
 		mobNo.setMobileCustomer(this);
 	}
 	
-	
+	public void deleteNumber(MobileNumber mobileNumber) {
+		MobNumbers.remove(mobileNumber);
+		mobileNumber.setMobileCustomer(null);
+	}
 	
 	
 	public Long getId() {

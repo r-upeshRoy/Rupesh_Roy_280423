@@ -95,7 +95,40 @@ public class CustomerService {
 		}
 	 return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("mobile number is not exists");
 	}
-    
+	
+	
+	
+	public String addCustomerNumber(Long id, MobileNumber mobile) {
+		try {
+			Customer customer = customerDao.findById(id).get();
+			customer.addNo(mobile);// this is helper method to add mobile object in list and set the
+								// customer to the mobile number
+			mobileDao.save(mobile);
+			return "mobile number added successful";
+
+		} catch (Exception e) {
+			return "Invalid Id";
+		}
+	}
+	
+	
+	public String deleteCustomerNumber(Long id, MobileNumber mobNo) {
+		try {
+			Customer customer = customerDao.findById(id).get();
+			List<MobileNumber> mobile = customer.getMobNumbers();
+			
+			for(MobileNumber m:  mobile) {
+				if(m.getMobileNumber().equals(mobNo.getMobileNumber())) {
+					customer.deleteNumber(m);
+					mobileDao.delete(m);
+					return "Customer Mobile number deleted successful";
+				}
+			}
+			return "Invalid Mobile Number";	
+		} catch (Exception e) {
+			return "Invalid Id";
+		}
+	}
     
    
 
